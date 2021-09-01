@@ -46,6 +46,13 @@ namespace NPCEnchantFix
 
                     // Otherwise, add the NPC to the patch
                     var modifiedNpc = state.PatchMod.Npcs.GetOrAddAsOverride(npc);
+                    
+                    if (modifiedNpc.Name != null && modifiedNpc.Name.TryLookup(Language.French, out string i18nNpcName)) {
+                        modifiedNpc.Name = i18nNpcName;
+                    }
+                    if (modifiedNpc.ShortName != null && modifiedNpc.ShortName.TryLookup(Language.French, out string i18nNpcShortName)) {
+                        modifiedNpc.ShortName = i18nNpcShortName;
+                    }
 
                     // Ensure perk list exists
                     modifiedNpc.Perks ??= new ExtendedList<PerkPlacement>();
