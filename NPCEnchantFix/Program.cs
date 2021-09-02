@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Mutagen.Bethesda;
 using Mutagen.Bethesda.Synthesis;
 using Mutagen.Bethesda.Skyrim;
@@ -46,6 +47,13 @@ namespace NPCEnchantFix
 
                     // Otherwise, add the NPC to the patch
                     var modifiedNpc = state.PatchMod.Npcs.GetOrAddAsOverride(npc);
+                    
+                    if (modifiedNpc.Name != null && modifiedNpc.Name.TryLookup(Language.French, out string i18nNpcName)) {
+                        modifiedNpc.Name = Encoding.GetEncoding("ISO-8859-1").GetString(Encoding.UTF8.GetBytes(i18nNpcName));
+                    }
+                    if (modifiedNpc.ShortName != null && modifiedNpc.ShortName.TryLookup(Language.French, out string i18nNpcShortName)) {
+                        modifiedNpc.ShortName = Encoding.GetEncoding("ISO-8859-1").GetString(Encoding.UTF8.GetBytes(i18nNpcShortName));
+                    }
 
                     // Ensure perk list exists
                     modifiedNpc.Perks ??= new ExtendedList<PerkPlacement>();
