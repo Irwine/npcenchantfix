@@ -1,7 +1,7 @@
 # npc enchant fix
 Le patcher applique les perks `AlchemySkillBoosts` et `PerkSkillBoosts` aux pnjs si nécessaire.
 
-### Version à utiliser
+## Version à utiliser
 0.31 et 0.19.3
 
 # Crédits
